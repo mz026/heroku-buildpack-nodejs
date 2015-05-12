@@ -44,33 +44,28 @@ warn_node_modules "$modules_source"
 ####### Vendor in binaries
 
 head "Installing binaries"
-if [`hash node >/dev/null 2>&1`] && [`node -v` == "$node_engine"]; then
+if [ `hash node >/dev/null 2>&1` ] && [ `node -v` == "$node_engine" ]; then
   echo "node enging ready!"
 else
   install_node "$node_engine"
 fi
 
-# if [ "$iojs_engine" == "" ]; then
-#   install_node "$node_engine"
-# else
-#   install_iojs "$iojs_engine"
-# fi
 install_npm
 
 ####### Build the project's dependencies
 
-# head "Building dependencies"
-# cd $build_dir
-# build_dependencies
-#
-# ####### Create a Procfile if possible
-#
-# head "Checking startup method"
-# ensure_procfile "$start_method" "$build_dir"
-# warn_start "$start_method"
-#
-# ####### Finalize the build
-#
+head "Building dependencies"
+cd $build_dir
+build_dependencies
+
+####### Create a Procfile if possible
+
+head "Checking startup method"
+ensure_procfile "$start_method" "$build_dir"
+warn_start "$start_method"
+
+####### Finalize the build
+
 # head "Finalizing build"
 # write_profile
 # write_export
