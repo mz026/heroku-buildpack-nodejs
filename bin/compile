@@ -55,6 +55,8 @@ install_npm
 ####### Build the project's dependencies
 
 head "Building dependencies"
+echo "cache dir: $cache_dir"
+echo "modules_source: $modules_source"
 cd $build_dir
 build_dependencies
 
